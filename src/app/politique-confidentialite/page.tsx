@@ -68,7 +68,7 @@ export default function PolitiqueConfidentialite() {
               (RGPD), vous disposez d&apos;un droit d&apos;accès, de
               rectification, de suppression et de portabilité de vos données.
               Pour exercer ces droits, contactez-nous à :
-              contact@estelledeclercq.fr
+              declercqestelle.kinesio@gmail.com
             </p>
           </section>
 

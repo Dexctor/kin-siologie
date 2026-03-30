@@ -39,7 +39,7 @@ export default function MentionsLegales() {
               <br />
               Téléphone : 06 00 00 00 00
               <br />
-              Email : contact@estelledeclercq.fr
+              Email : declercqestelle.kinesio@gmail.com
             </p>
           </section>
 

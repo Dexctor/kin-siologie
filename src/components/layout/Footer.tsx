@@ -61,11 +61,11 @@ export default function Footer() {
                 06 00 00 00 00
               </a>
               <a
-                href="mailto:contact@estelledeclercq.fr"
+                href="mailto:declercqestelle.kinesio@gmail.com"
                 className="flex items-center gap-2 hover:text-terracotta-light transition-colors"
               >
                 <Mail size={16} />
-                contact@estelledeclercq.fr
+                declercqestelle.kinesio@gmail.com
               </a>
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="shrink-0 mt-0.5" />
