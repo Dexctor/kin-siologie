@@ -33,7 +33,7 @@ export default function MentionsLegales() {
               <br />
               Entreprise individuelle
               <br />
-              SIRET : 000 000 000 00000
+              SIRET : 988 636 643 00013
               <br />
               Adresse : 123 Rue du Bien-être, 75000 Votre Ville
               <br />

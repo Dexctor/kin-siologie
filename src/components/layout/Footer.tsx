@@ -1,11 +1,26 @@
 "use client";
 
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Navigation, Clock } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-dark-text text-white/80">
+      {/* Map band */}
+      <div className="w-full h-64 relative">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.0!2d2.35!3d48.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUx!5e0!3m2!1sfr!2sfr!4v1"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Localisation du cabinet"
+          className="grayscale opacity-70"
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -34,7 +49,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
+          {/* Contact & Address */}
           <div>
             <h4 className="font-semibold text-white mb-4">Contact</h4>
             <div className="space-y-3 text-sm">
@@ -60,12 +75,24 @@ export default function Footer() {
                   75000 Votre Ville
                 </span>
               </div>
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-terracotta-light hover:text-white transition-colors"
+              >
+                <Navigation size={14} />
+                Itinéraire
+              </a>
             </div>
           </div>
 
           {/* Hours */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Horaires</h4>
+            <h4 className="font-semibold text-white mb-4">
+              <Clock size={16} className="inline mr-2" />
+              Horaires
+            </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span>Lun – Ven</span>
@@ -108,7 +135,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Estelle Declercq – Kinésiologue &
             Maderothérapeute. Tous droits réservés.
           </p>
-          <p className="text-xs text-white/40">SIRET : 000 000 000 00000</p>
+          <p className="text-xs text-white/40">SIRET : 988 636 643 00013</p>
         </div>
       </div>
     </footer>
