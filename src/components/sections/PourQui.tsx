@@ -13,6 +13,7 @@ import {
   ArrowUpRight,
   Frown,
 } from "lucide-react";
+import { BlobOne, BlobTwo } from "@/components/ui/DecorativeShapes";
 
 const profiles = [
   {
@@ -88,8 +89,12 @@ const cardVariants = {
 
 export default function PourQui() {
   return (
-    <section className="py-20 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-cream relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobOne className="absolute -top-20 -right-32 w-80 h-80 text-terracotta/[0.07]" />
+      <BlobTwo className="absolute -bottom-24 -left-28 w-72 h-72 text-terracotta-light/[0.12]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Clock, Phone, MessageCircle } from "lucide-react";
+import { BlobFour } from "@/components/ui/DecorativeShapes";
 import BookingCalendar from "./BookingCalendar";
 
 const tarifs = [
@@ -33,8 +34,11 @@ const tarifs = [
 
 export default function Tarifs() {
   return (
-    <section id="tarifs" className="py-20 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tarifs" className="py-20 bg-cream relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobFour className="absolute top-16 -right-36 w-96 h-96 text-terracotta/[0.05]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

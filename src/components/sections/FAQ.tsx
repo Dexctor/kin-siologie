@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BlobThree } from "@/components/ui/DecorativeShapes";
 import {
   Accordion,
   AccordionContent,
@@ -44,8 +45,11 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="py-20 bg-warm-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-warm-white relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobThree className="absolute -bottom-20 -left-32 w-80 h-80 text-terracotta-light/[0.10]" />
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -10,6 +10,7 @@ import {
   Leaf,
   CircleCheck,
 } from "lucide-react";
+import { BlobThree } from "@/components/ui/DecorativeShapes";
 
 const bienfaits = [
   { icon: Zap, label: "Réduction du stress et de l'anxiété" },
@@ -45,8 +46,11 @@ const etapes = [
 
 export default function Kinesiologie() {
   return (
-    <section id="kinesiologie" className="py-20 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="kinesiologie" className="py-20 bg-cream relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobThree className="absolute -top-16 -left-36 w-96 h-96 text-terracotta/[0.06]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

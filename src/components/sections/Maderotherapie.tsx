@@ -10,6 +10,7 @@ import {
   TreePine,
   CircleCheck,
 } from "lucide-react";
+import { BlobFour, BlobOne } from "@/components/ui/DecorativeShapes";
 
 const bienfaits = [
   { icon: Sparkles, label: "Réduction de la cellulite" },
@@ -45,8 +46,12 @@ const etapes = [
 
 export default function Maderotherapie() {
   return (
-    <section id="maderotherapie" className="py-20 bg-warm-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="maderotherapie" className="py-20 bg-warm-white relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobFour className="absolute -bottom-20 -right-32 w-80 h-80 text-terracotta-light/[0.10]" />
+      <BlobOne className="absolute top-12 -left-24 w-64 h-64 text-terracotta/[0.05]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

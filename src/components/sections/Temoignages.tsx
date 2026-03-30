@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote, ExternalLink } from "lucide-react";
+import { BlobTwo } from "@/components/ui/DecorativeShapes";
 
 const temoignages = [
   {
@@ -26,8 +27,11 @@ const temoignages = [
 
 export default function Temoignages() {
   return (
-    <section className="py-20 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-cream relative overflow-hidden">
+      {/* Decorative shapes */}
+      <BlobTwo className="absolute -top-24 -right-28 w-72 h-72 text-terracotta/[0.06]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header with Google rating */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
