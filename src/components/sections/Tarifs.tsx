@@ -8,7 +8,7 @@ const tarifs = [
   {
     title: "Kinésiologie",
     subtitle: "Adulte",
-    price: "70",
+    price: "60",
     duration: "1h à 1h30",
     description: "Séance complète de rééquilibrage énergétique",
     featured: true,
@@ -16,17 +16,17 @@ const tarifs = [
   {
     title: "Kinésiologie",
     subtitle: "Enfant / Adolescent",
-    price: "55",
+    price: "50",
     duration: "45 min à 1h",
     description: "Séance adaptée aux plus jeunes",
     featured: false,
   },
   {
     title: "Maderothérapie",
-    subtitle: "Séance complète",
-    price: "80",
-    duration: "1h",
-    description: "Modelage corporel aux instruments en bois",
+    subtitle: "Jambes",
+    price: "45",
+    duration: "40 min",
+    description: "Modelage des jambes aux instruments en bois",
     featured: false,
   },
 ];

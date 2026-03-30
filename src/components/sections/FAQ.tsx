@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Qu'est-ce que la kinésiologie ?",
     answer:
-      "La kinésiologie est une pratique de bien-être qui utilise le test musculaire comme outil de communication avec le corps. Elle permet d'identifier les déséquilibres physiques, émotionnels et énergétiques, puis de les corriger grâce à différentes techniques douces (points réflexes, mouvements, visualisations). C'est une approche holistique qui considère la personne dans sa globalité.",
+      "La kinésiologie est une pratique de bien-être qui utilise le test musculaire comme outil de communication avec le corps. Elle permet d'identifier les déséquilibres physiques, émotionnels et énergétiques, puis de les corriger grâce à différentes techniques douces (points réflexes, mouvements, visualisations). C'est une approche globale qui considère la personne dans son ensemble.",
   },
   {
     question: "Combien de séances faut-il ?",
@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "Est-ce remboursé par la mutuelle ?",
     answer:
-      "La kinésiologie n'est pas remboursée par la Sécurité sociale. Cependant, de nombreuses mutuelles proposent un forfait annuel pour les médecines douces et complémentaires. Je vous invite à vérifier auprès de votre mutuelle les conditions de remboursement. Une facture vous sera délivrée après chaque séance.",
+      "La kinésiologie n'est pas remboursée par la Sécurité sociale. Cependant, de nombreuses mutuelles proposent un forfait annuel pour les médecines douces et complémentaires. Je vous invite à vérifier auprès de votre mutuelle les conditions de remboursement. Une facture peut vous être délivrée sur demande.",
   },
   {
     question:

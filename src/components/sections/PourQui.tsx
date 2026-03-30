@@ -28,7 +28,7 @@ const profiles = [
   {
     icon: Baby,
     title: "Enfants",
-    desc: "Accompagnement doux et adapté pour les troubles du comportement et du sommeil.",
+    desc: "Accompagnement doux et adapté pour les difficultés d'apprentissage, de concentration et de comportement.",
   },
   {
     icon: Dumbbell,

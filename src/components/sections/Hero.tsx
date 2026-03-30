@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
   Award,
@@ -9,18 +10,57 @@ import {
   Heart,
   Shield,
   Sparkles,
+  X,
 } from "lucide-react";
 
 const certifications = [
-  { label: "EMNAK", desc: "Formation de base en kinésiologie", icon: GraduationCap },
-  { label: "TFH", desc: "Touch For Health, certifiée", icon: Heart },
-  { label: "TIOC", desc: "Three In One Concept, niveau 9", icon: Award },
-  { label: "KCS", desc: "Cranio-sacré, niveau 1", icon: Shield },
-  { label: "BG", desc: "Brain Gym 3D et 7D", icon: Brain },
-  { label: "KH", desc: "Kinésiologie Harmonique, niveau 1", icon: Sparkles },
+  {
+    label: "EMNAK",
+    shortDesc: "Formation de base en kinésiologie",
+    longDesc:
+      "L'EMNAK (École de kinésiologie) fournit la formation fondamentale en kinésiologie : test musculaire, principes énergétiques et techniques de rééquilibrage. C'est le socle de toute la pratique.",
+    icon: GraduationCap,
+  },
+  {
+    label: "TFH",
+    shortDesc: "Touch For Health, certifiée",
+    longDesc:
+      "Le Touch For Health (Santé par le Toucher) est une méthode qui utilise le test musculaire pour identifier les déséquilibres énergétiques et les corriger via des points d'acupressure, des méridiens et des techniques posturales.",
+    icon: Heart,
+  },
+  {
+    label: "TIOC",
+    shortDesc: "Three In One Concept, niveau 9",
+    longDesc:
+      "Le Three In One Concept (3 en 1) intègre le corps, le mental et l'esprit. Cette méthode permet de libérer les blocages émotionnels profonds en identifiant les croyances limitantes et les stress passés qui influencent le présent.",
+    icon: Award,
+  },
+  {
+    label: "KCS",
+    shortDesc: "Cranio-sacré, niveau 1",
+    longDesc:
+      "La kinésiologie cranio-sacrée travaille sur le système cranio-sacré (crâne, colonne vertébrale, sacrum) pour libérer les tensions profondes, favoriser la circulation du liquide céphalo-rachidien et restaurer l'équilibre du système nerveux.",
+    icon: Shield,
+  },
+  {
+    label: "BG",
+    shortDesc: "Brain Gym 3D et 7D",
+    longDesc:
+      "Le Brain Gym utilise des mouvements simples et ciblés pour stimuler les connexions cérébrales. La 3D travaille sur les trois dimensions du mouvement (latéralité, centrage, focalisation) et la 7D y ajoute quatre dimensions supplémentaires pour une approche encore plus complète de l'intégration corps-cerveau.",
+    icon: Brain,
+  },
+  {
+    label: "KH",
+    shortDesc: "Kinésiologie Harmonique, niveau 1",
+    longDesc:
+      "La Kinésiologie Harmonique utilise les fréquences vibratoires et les sons pour rééquilibrer le corps énergétique. Elle permet de travailler en profondeur sur les mémoires cellulaires et les blocages subtils.",
+    icon: Sparkles,
+  },
 ];
 
 export default function Hero() {
+  const [selectedCert, setSelectedCert] = useState<number | null>(null);
+
   return (
     <section
       id="accueil"
@@ -73,30 +113,75 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap gap-3 mb-10"
+              className="mb-10"
             >
-              {certifications.map((cert, i) => {
-                const Icon = cert.icon;
-                return (
+              <div className="flex flex-wrap gap-3">
+                {certifications.map((cert, i) => {
+                  const Icon = cert.icon;
+                  const isSelected = selectedCert === i;
+                  return (
+                    <motion.button
+                      key={cert.label}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
+                      whileHover={{ scale: 1.03 }}
+                      onClick={() =>
+                        setSelectedCert(isSelected ? null : i)
+                      }
+                      className={`relative flex items-center gap-2 px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${
+                        isSelected
+                          ? "bg-terracotta text-white border-terracotta"
+                          : "bg-cream text-dark-text border-terracotta-light/50 hover:border-terracotta/40"
+                      }`}
+                    >
+                      <Icon
+                        size={16}
+                        className={`shrink-0 ${
+                          isSelected ? "text-white" : "text-terracotta"
+                        }`}
+                      />
+                      <span className="text-sm font-medium">
+                        {cert.label}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+
+              {/* Description panel */}
+              <AnimatePresence mode="wait">
+                {selectedCert !== null && (
                   <motion.div
-                    key={cert.label}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
-                    whileHover={{ scale: 1.03 }}
-                    className="group relative flex items-center gap-2 px-4 py-2 bg-cream rounded-full border border-terracotta-light/50 cursor-default"
+                    key={selectedCert}
+                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                    animate={{ opacity: 1, height: "auto", marginTop: 12 }}
+                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="overflow-hidden"
                   >
-                    <Icon size={16} className="text-terracotta shrink-0" />
-                    <span className="text-sm font-medium text-dark-text">
-                      {cert.label}
-                    </span>
-                    {/* Tooltip */}
-                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-dark-text text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                      {cert.desc}
-                    </span>
+                    <div className="bg-cream rounded-2xl p-5 border border-terracotta-light/40">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-dark-text mb-1">
+                            {certifications[selectedCert].label} –{" "}
+                            {certifications[selectedCert].shortDesc}
+                          </p>
+                          <p className="text-sm text-medium-text leading-relaxed">
+                            {certifications[selectedCert].longDesc}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setSelectedCert(null)}
+                          className="shrink-0 p-1 text-medium-text hover:text-dark-text transition-colors"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    </div>
                   </motion.div>
-                );
-              })}
+                )}
+              </AnimatePresence>
             </motion.div>
 
             {/* CTA */}

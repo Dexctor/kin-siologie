@@ -39,7 +39,7 @@ export default function APropos() {
                 l&apos;humain, j&apos;ai entrepris une reconversion
                 professionnelle qui m&apos;a menée vers la kinésiologie. Cette
                 discipline m&apos;a immédiatement parlé par son approche
-                holistique : elle considère la personne dans sa globalité —
+                globale : elle considère la personne dans son ensemble —
                 corps, mental et émotions.
               </p>
               <p>

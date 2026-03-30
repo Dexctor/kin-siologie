@@ -34,7 +34,7 @@ const etapes = [
   {
     step: "03",
     title: "Modelage aux outils en bois",
-    desc: "Utilisation d'instruments en bois de différentes formes pour masser, drainer et remodeler les zones ciblées.",
+    desc: "Utilisation d'instruments en bois de différentes formes pour masser, drainer et remodeler les jambes.",
   },
   {
     step: "04",
@@ -61,7 +61,7 @@ export default function Maderotherapie() {
           <p className="text-medium-text text-lg max-w-2xl mx-auto">
             La maderothérapie est une technique de massage ancestrale utilisant
             des instruments en bois spécialement conçus pour remodeler, drainer
-            et tonifier le corps de manière naturelle.
+            et tonifier les jambes de manière naturelle.
           </p>
         </motion.div>
 

@@ -59,7 +59,7 @@ export default function Kinesiologie() {
             Kinésiologie
           </h2>
           <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            La kinésiologie est une approche holistique qui utilise le test
+            La kinésiologie est une approche globale qui utilise le test
             musculaire pour identifier les déséquilibres et rétablir
             l&apos;harmonie entre le corps, le mental et les émotions.
           </p>
