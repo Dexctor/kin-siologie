@@ -1,171 +1,150 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Image from "next/image";
 import {
-  Sparkles,
-  Droplets,
+  ArrowUpRight,
   CircleDot,
+  Droplets,
+  Feather,
+  Leaf,
+  Sparkles,
   Waves,
-  Flower2,
-  TreePine,
-  CircleCheck,
 } from "lucide-react";
-import { BlobFour, BlobOne } from "@/components/ui/DecorativeShapes";
 
-const bienfaits = [
-  { icon: Sparkles, label: "Réduction de la cellulite" },
-  { icon: Droplets, label: "Amélioration de la circulation sanguine" },
-  { icon: CircleDot, label: "Raffermissement de la peau" },
-  { icon: Waves, label: "Drainage lymphatique naturel" },
-  { icon: Flower2, label: "Relaxation profonde" },
-  { icon: TreePine, label: "Technique 100% naturelle, non invasive" },
+const benefits = [
+  { icon: Waves, label: "Sensation de jambes plus légères" },
+  { icon: Droplets, label: "Gestes favorisant la circulation" },
+  { icon: CircleDot, label: "Travail ciblé sur la tonicité" },
+  { icon: Sparkles, label: "Attention portée à la texture de la peau" },
+  { icon: Feather, label: "Temps de relâchement corporel" },
+  { icon: Leaf, label: "Technique manuelle non invasive" },
 ];
 
-const etapes = [
+const steps = [
   {
-    step: "01",
-    title: "Bilan corporel",
-    desc: "Évaluation de vos besoins spécifiques et des zones à traiter pour personnaliser votre séance.",
+    number: "01",
+    title: "Faire le point",
+    description:
+      "Nous définissons les zones à travailler, vos attentes et les éventuelles précautions à prendre.",
   },
   {
-    step: "02",
-    title: "Préparation",
-    desc: "Application d'huiles naturelles et échauffement des tissus pour préparer le corps au modelage.",
+    number: "02",
+    title: "Préparer les tissus",
+    description:
+      "L’huile et les premiers gestes manuels installent le soin progressivement et confortablement.",
   },
   {
-    step: "03",
-    title: "Modelage aux outils en bois",
-    desc: "Utilisation d'instruments en bois de différentes formes pour masser, drainer et remodeler les jambes.",
+    number: "03",
+    title: "Modeler avec les outils",
+    description:
+      "Les instruments en bois sont choisis selon la zone et utilisés avec une pression ajustée.",
   },
   {
-    step: "04",
-    title: "Finalisation",
-    desc: "Massage de finition pour apaiser la peau et conseils pour optimiser les résultats entre les séances.",
+    number: "04",
+    title: "Terminer en douceur",
+    description:
+      "Un temps de finition apaise les tissus, puis nous échangeons sur vos ressentis.",
   },
 ];
 
 export default function Maderotherapie() {
   return (
-    <section id="maderotherapie" className="py-20 bg-warm-white relative overflow-hidden">
-      {/* Decorative shapes */}
-      <BlobFour className="absolute -bottom-20 -right-32 w-80 h-80 text-terracotta-light/[0.10]" />
-      <BlobOne className="absolute top-12 -left-24 w-64 h-64 text-terracotta/[0.05]" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            Maderothérapie
-          </h2>
-          <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            La maderothérapie est une technique de massage ancestrale utilisant
-            des instruments en bois spécialement conçus pour remodeler, drainer
-            et tonifier les jambes de manière naturelle.
-          </p>
-        </motion.div>
-
-        {/* Bienfaits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-semibold text-dark-text mb-8 text-center">
-            Les bienfaits
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bienfaits.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex items-center gap-4 p-4 bg-cream rounded-xl border border-terracotta-light/30"
-                >
-                  <div className="w-10 h-10 bg-terracotta/10 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon size={20} className="text-terracotta" />
-                  </div>
-                  <span className="text-dark-text font-medium">
-                    {item.label}
-                  </span>
-                </motion.div>
-              );
-            })}
+    <section id="maderotherapie" className="bg-cream py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+          <div>
+            <h2 className="font-editorial text-4xl font-semibold leading-tight tracking-[-0.025em] text-dark-text sm:text-5xl lg:text-6xl">
+              La maderothérapie, un modelage précis aux outils en bois.
+            </h2>
+            <div className="mt-6 space-y-4 text-base leading-7 text-medium-text sm:text-lg sm:leading-8">
+              <p>
+                La maderothérapie est une technique manuelle qui utilise des
+                instruments en bois de formes différentes pour modeler et
+                stimuler les jambes de façon ciblée.
+              </p>
+              <p>
+                La pression est ajustée à votre sensibilité. Le soin se déroule
+                dans un cadre professionnel, avec des gestes progressifs et un
+                temps d’échange avant comme après la séance.
+              </p>
+            </div>
+            <a
+              href="#tarifs"
+              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text"
+            >
+              Réserver une séance
+              <ArrowUpRight aria-hidden="true" size={18} />
+            </a>
           </div>
-        </motion.div>
 
-        {/* Déroulement */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h3 className="text-2xl font-semibold text-dark-text mb-8 text-center">
-            Déroulement d&apos;une séance
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {etapes.map((etape, i) => (
-              <motion.div
-                key={etape.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative bg-cream rounded-2xl p-6 border border-terracotta-light/30"
+          <figure className="relative overflow-hidden rounded-[2rem] bg-white editorial-shadow sm:rounded-[2.5rem]">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src="/images/seance-maderotherapie.webp"
+                alt="Modelage des jambes avec un rouleau en bois pendant une séance de maderothérapie"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 92vw, 52vw"
+              />
+            </div>
+            <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-terracotta-light/60 bg-white px-5 py-4 text-sm sm:px-6">
+              <span className="font-medium text-dark-text">
+                Soin ciblé des jambes
+              </span>
+              <span className="text-muted-text">40 minutes</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div className="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <div
+                key={benefit.label}
+                className="flex items-center gap-3 rounded-2xl bg-white/75 px-5 py-4"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl font-bold text-terracotta/20">
-                    {etape.step}
-                  </span>
-                  <CircleCheck size={20} className="text-terracotta" />
-                </div>
-                <h4 className="font-semibold text-dark-text mb-2">
-                  {etape.title}
-                </h4>
-                <p className="text-sm text-medium-text leading-relaxed">
-                  {etape.desc}
-                </p>
-                {i < etapes.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-terracotta-light" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
+                  <Icon aria-hidden="true" size={19} />
+                </span>
+                <span className="text-sm font-medium leading-5 text-dark-text">
+                  {benefit.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-14"
-        >
-          <a
-            href="#tarifs"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#tarifs")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center px-8 py-4 bg-terracotta text-white text-lg font-medium rounded-full hover:bg-terracotta/90 transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-terracotta/20"
-          >
-            Réserver une séance de maderothérapie
-          </a>
-        </motion.div>
+        <div className="mt-16 grid overflow-hidden rounded-[2rem] bg-white lg:grid-cols-[0.68fr_1.32fr]">
+          <div className="flex flex-col justify-between bg-terracotta p-7 text-white sm:p-9 lg:p-11">
+            <div>
+              <h3 className="font-editorial text-3xl font-semibold leading-tight sm:text-4xl">
+                Une technique précise, une pression toujours ajustée.
+              </h3>
+            </div>
+            <p className="mt-8 border-t border-white/25 pt-6 text-sm leading-6 text-white/75">
+              Vous restez actrice de la séance : la pression et les gestes sont
+              adaptés à votre confort tout au long du soin.
+            </p>
+          </div>
+
+          <ol className="p-6 sm:p-8 lg:p-10">
+            {steps.map((step) => (
+              <li
+                key={step.number}
+                className="grid gap-2 border-b border-terracotta-light/70 py-6 first:pt-0 last:border-b-0 last:pb-0 sm:grid-cols-[52px_1fr] sm:gap-5"
+              >
+                <span className="font-editorial text-2xl text-terracotta-warm/65">
+                  {step.number}
+                </span>
+                <div>
+                  <h4 className="font-semibold text-dark-text">{step.title}</h4>
+                  <p className="mt-1.5 text-sm leading-6 text-medium-text">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

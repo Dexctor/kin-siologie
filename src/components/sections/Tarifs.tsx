@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Clock, Phone, MessageCircle } from "lucide-react";
-import { BlobFour } from "@/components/ui/DecorativeShapes";
+import { Clock } from "lucide-react";
 import BookingCalendar from "./BookingCalendar";
 
 const tarifs = [
@@ -10,17 +6,19 @@ const tarifs = [
     title: "Kinésiologie",
     subtitle: "Adulte",
     price: "60",
-    duration: "1h à 1h30",
+    duration: "1 h à 1 h 30",
     description: "Séance complète de rééquilibrage énergétique",
-    featured: true,
+    desktopOrder: "md:order-2",
+    emphasis: true,
   },
   {
     title: "Kinésiologie",
     subtitle: "Enfant / Adolescent",
     price: "50",
-    duration: "45 min à 1h",
+    duration: "45 min à 1 h",
     description: "Séance adaptée aux plus jeunes",
-    featured: false,
+    desktopOrder: "md:order-1",
+    emphasis: false,
   },
   {
     title: "Maderothérapie",
@@ -28,138 +26,71 @@ const tarifs = [
     price: "45",
     duration: "40 min",
     description: "Modelage des jambes aux instruments en bois",
-    featured: false,
+    desktopOrder: "md:order-3",
+    emphasis: false,
   },
 ];
 
 export default function Tarifs() {
   return (
-    <section id="tarifs" className="py-20 bg-cream relative overflow-hidden">
-      {/* Decorative shapes */}
-      <BlobFour className="absolute top-16 -right-36 w-96 h-96 text-terracotta/[0.05]" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            Tarifs & Prise de rendez-vous
-          </h2>
-          <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            Des tarifs transparents pour un accompagnement de qualité.
+    <section
+      id="tarifs"
+      aria-labelledby="tarifs-title"
+      className="bg-cream py-20 sm:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-12 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.65fr)] lg:items-end">
+          <div>
+            <h2
+              id="tarifs-title"
+              className="font-editorial text-4xl font-semibold leading-tight text-dark-text sm:text-5xl"
+            >
+              Des tarifs simples et transparents
+            </h2>
+          </div>
+          <p className="max-w-xl text-pretty text-lg leading-relaxed text-medium-text lg:justify-self-end">
+            Choisissez l&apos;accompagnement adapté à votre besoin, puis
+            contactez-moi pour convenir d&apos;un créneau.
           </p>
-        </motion.div>
+        </header>
 
-        {/* Tarif cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {tarifs.map((tarif, i) => (
-            <motion.div
+        <div className="mb-14 grid overflow-hidden rounded-3xl border border-terracotta-light/70 bg-white divide-y divide-terracotta-light/70 md:grid-cols-3 md:divide-x md:divide-y-0">
+          {tarifs.map((tarif) => (
+            <article
               key={tarif.title + tarif.subtitle}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className={`rounded-2xl p-8 border transition-all duration-300 ${
-                tarif.featured
-                  ? "bg-terracotta text-white border-terracotta shadow-xl shadow-terracotta/20"
-                  : "bg-white border-terracotta-light/30 hover:border-terracotta/30 hover:shadow-lg"
+              className={`flex min-h-full flex-col gap-7 p-7 sm:p-8 ${tarif.desktopOrder} ${
+                tarif.emphasis ? "bg-warm-white" : "bg-white"
               }`}
             >
-              <p
-                className={`text-sm font-medium mb-1 ${
-                  tarif.featured ? "text-white/80" : "text-terracotta"
-                }`}
-              >
-                {tarif.subtitle}
-              </p>
-              <h3
-                className={`text-xl font-semibold mb-4 ${
-                  tarif.featured ? "text-white" : "text-dark-text"
-                }`}
-              >
-                {tarif.title}
-              </h3>
-              <div className="flex items-end gap-1 mb-4">
-                <span
-                  className={`text-4xl font-bold ${
-                    tarif.featured ? "text-white" : "text-dark-text"
-                  }`}
-                >
-                  {tarif.price}€
+              <header>
+                <p className="text-sm font-medium text-terracotta">
+                  {tarif.subtitle}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold text-dark-text">
+                  {tarif.title}
+                </h3>
+              </header>
+
+              <p className="flex flex-wrap items-baseline gap-x-2">
+                <span className="text-4xl font-semibold tabular-nums text-dark-text">
+                  {tarif.price}&nbsp;€
                 </span>
-                <span
-                  className={`text-sm mb-1 ${
-                    tarif.featured ? "text-white/70" : "text-medium-text"
-                  }`}
-                >
-                  / séance
-                </span>
-              </div>
-              <div
-                className={`flex items-center gap-2 text-sm mb-4 ${
-                  tarif.featured ? "text-white/80" : "text-medium-text"
-                }`}
-              >
-                <Clock size={16} />
-                <span>{tarif.duration}</span>
-              </div>
-              <p
-                className={`text-sm ${
-                  tarif.featured ? "text-white/80" : "text-medium-text"
-                }`}
-              >
-                {tarif.description}
+                <span className="text-sm text-medium-text">par séance</span>
               </p>
-            </motion.div>
+
+              <div className="border-t border-terracotta-light/60 pt-5">
+                <p className="flex items-center gap-2 text-sm font-medium text-dark-text">
+                  <Clock aria-hidden="true" className="size-4 text-terracotta" />
+                  <span>{tarif.duration}</span>
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-medium-text">
+                  {tarif.description}
+                </p>
+              </div>
+            </article>
           ))}
         </div>
 
-        {/* Phone contact */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white rounded-2xl p-8 border border-terracotta-light/30 mb-12 text-center"
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-terracotta/10 rounded-full flex items-center justify-center">
-                <Phone size={22} className="text-terracotta" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm text-medium-text">
-                  Appelez-moi directement
-                </p>
-                <a
-                  href="tel:+33600000000"
-                  className="text-lg font-semibold text-dark-text hover:text-terracotta transition-colors"
-                >
-                  06 00 00 00 00
-                </a>
-              </div>
-            </div>
-            <div className="hidden sm:block w-px h-12 bg-terracotta-light/50" />
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-terracotta/10 rounded-full flex items-center justify-center">
-                <MessageCircle size={22} className="text-terracotta" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm text-medium-text">Premier échange</p>
-                <p className="text-lg font-semibold text-dark-text">
-                  Gratuit & sans engagement
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Booking Calendar */}
         <BookingCalendar />
       </div>
     </section>

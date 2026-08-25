@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  Award,
+  ArrowDownRight,
+  CalendarCheck,
+  Check,
   GraduationCap,
-  Brain,
-  Heart,
-  Shield,
   Sparkles,
   X,
 } from "lucide-react";
@@ -16,234 +15,216 @@ import {
 const certifications = [
   {
     label: "EMNAK",
-    shortDesc: "Formation de base en kinésiologie",
-    longDesc:
-      "L'EMNAK (École de kinésiologie) fournit la formation fondamentale en kinésiologie : test musculaire, principes énergétiques et techniques de rééquilibrage. C'est le socle de toute la pratique.",
-    icon: GraduationCap,
+    name: "École de kinésiologie",
+    detail:
+      "Formation fondamentale au test musculaire et aux techniques de rééquilibrage.",
   },
   {
     label: "TFH",
-    shortDesc: "Touch For Health, certifiée",
-    longDesc:
-      "Le Touch For Health (Santé par le Toucher) est une méthode qui utilise le test musculaire pour identifier les déséquilibres énergétiques et les corriger via des points d'acupressure, des méridiens et des techniques posturales.",
-    icon: Heart,
+    name: "Touch For Health",
+    detail:
+      "Approche douce qui associe test musculaire, points réflexes et mouvements.",
   },
   {
     label: "TIOC",
-    shortDesc: "Three In One Concept, niveau 9",
-    longDesc:
-      "Le Three In One Concept (3 en 1) intègre le corps, le mental et l'esprit. Cette méthode permet de libérer les blocages émotionnels profonds en identifiant les croyances limitantes et les stress passés qui influencent le présent.",
-    icon: Award,
+    name: "Three In One Concept, niveau 9",
+    detail:
+      "Un travail qui relie le corps, les émotions et les habitudes de pensée.",
   },
   {
     label: "KCS",
-    shortDesc: "Cranio-sacré, niveau 1",
-    longDesc:
-      "La kinésiologie cranio-sacrée travaille sur le système cranio-sacré (crâne, colonne vertébrale, sacrum) pour libérer les tensions profondes, favoriser la circulation du liquide céphalo-rachidien et restaurer l'équilibre du système nerveux.",
-    icon: Shield,
+    name: "Kinésiologie cranio-sacrée, niveau 1",
+    detail:
+      "Techniques douces centrées sur le relâchement et l’écoute du corps.",
   },
   {
     label: "BG",
-    shortDesc: "Brain Gym 3D et 7D",
-    longDesc:
-      "Le Brain Gym utilise des mouvements simples et ciblés pour stimuler les connexions cérébrales. La 3D travaille sur les trois dimensions du mouvement (latéralité, centrage, focalisation) et la 7D y ajoute quatre dimensions supplémentaires pour une approche encore plus complète de l'intégration corps-cerveau.",
-    icon: Brain,
+    name: "Brain Gym, 3D et 7D",
+    detail:
+      "Mouvements simples visant à soutenir l’attention et la coordination.",
   },
   {
     label: "KH",
-    shortDesc: "Kinésiologie Harmonique, niveau 1",
-    longDesc:
-      "La Kinésiologie Harmonique utilise les fréquences vibratoires et les sons pour rééquilibrer le corps énergétique. Elle permet de travailler en profondeur sur les mémoires cellulaires et les blocages subtils.",
-    icon: Sparkles,
+    name: "Kinésiologie harmonique, niveau 1",
+    detail:
+      "Approche complémentaire attentive aux ressentis et au rythme de chacun.",
   },
+];
+
+const reassurance = [
+  "Séances individuelles",
+  "Approche douce et personnalisée",
+  "Adultes, adolescents et enfants",
 ];
 
 export default function Hero() {
   const [selectedCert, setSelectedCert] = useState<number | null>(null);
+  const reduceMotion = useReducedMotion();
 
   return (
     <section
       id="accueil"
-      className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden"
+      className="relative overflow-hidden bg-warm-white pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-36"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Text side */}
-          <div className="order-2 lg:order-1">
-            <motion.p
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-medium-text text-lg mb-4"
-            >
-              Kinésiologue & Maderothérapeute
-            </motion.p>
+      <div
+        aria-hidden="true"
+        className="absolute right-0 top-0 h-72 w-1/3 border-l border-terracotta-light/50 bg-cream/45"
+      />
 
-            <motion.h1
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-dark-text leading-tight mb-6"
-            >
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative z-10"
+          >
+            <h1 className="max-w-3xl font-editorial text-[3.15rem] font-semibold leading-[0.95] tracking-[-0.035em] text-dark-text sm:text-6xl lg:text-[5.35rem]">
               Reconnectez-vous
-              <br />
-              <span className="text-terracotta">à votre corps.</span>
-            </motion.h1>
+              <span className="block italic text-terracotta">à votre corps.</span>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.4,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              className="text-lg text-medium-text mb-8 max-w-lg"
-            >
-              Le voyage vers le bien-être commence ici. Retrouvez votre
-              équilibre grâce à la kinésiologie et la maderothérapie.
-            </motion.p>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-medium-text sm:text-xl">
+              En kinésiologie ou en maderothérapie, chaque séance vous aide à
+              mieux écouter vos ressentis et à relâcher les tensions, à votre
+              rythme.
+            </p>
 
-            {/* Certifications badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-10"
-            >
-              <div className="flex flex-wrap gap-3">
-                {certifications.map((cert, i) => {
-                  const Icon = cert.icon;
-                  const isSelected = selectedCert === i;
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href="#tarifs"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-7 py-3.5 font-semibold text-white shadow-[0_12px_28px_rgba(94,43,25,0.18)] transition-colors hover:bg-dark-text"
+              >
+                <CalendarCheck aria-hidden="true" size={19} />
+                Prendre rendez-vous
+              </a>
+              <a
+                href="#kinesiologie"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3.5 font-semibold text-dark-text transition-colors hover:bg-cream"
+              >
+                Découvrir l’accompagnement
+                <ArrowDownRight aria-hidden="true" size={18} />
+              </a>
+            </div>
+
+            <ul className="mt-9 grid max-w-xl gap-3 text-sm text-medium-text sm:grid-cols-3">
+              {reassurance.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
+                    <Check aria-hidden="true" size={13} strokeWidth={2.5} />
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.figure
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.65,
+              delay: reduceMotion ? 0 : 0.12,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            className="relative mx-auto w-full max-w-lg lg:max-w-none"
+          >
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-cream editorial-shadow sm:rounded-[2.5rem]">
+              <Image
+                src="/images/hero-consultation.webp"
+                alt="Accompagnement individuel dans un cabinet de kinésiologie lumineux"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 92vw, 45vw"
+              />
+            </div>
+
+            <figcaption className="absolute -bottom-5 left-4 right-4 rounded-2xl border border-white/70 bg-white/92 p-4 shadow-xl shadow-dark-text/10 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-xs">
+              <div className="flex items-center gap-3">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-cream text-terracotta">
+                  <Sparkles aria-hidden="true" size={18} />
+                </span>
+                <p className="text-sm font-medium leading-5 text-dark-text">
+                  Un espace d’écoute, sans jugement et respectueux de votre
+                  rythme.
+                </p>
+              </div>
+            </figcaption>
+          </motion.figure>
+        </div>
+
+        <div className="mt-20 border-t border-terracotta-light/70 pt-7 lg:mt-16">
+          <div className="grid gap-5 lg:grid-cols-[220px_1fr] lg:items-start">
+            <div className="flex items-center gap-3 text-dark-text">
+              <span className="flex size-10 items-center justify-center rounded-full bg-cream text-terracotta">
+                <GraduationCap aria-hidden="true" size={20} />
+              </span>
+              <div>
+                <p className="font-semibold">Formations spécialisées</p>
+                <p className="text-sm text-muted-text">
+                  Touchez un sigle pour en savoir plus
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex flex-wrap gap-2.5">
+                {certifications.map((cert, index) => {
+                  const isSelected = selectedCert === index;
                   return (
-                    <motion.button
+                    <button
                       key={cert.label}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
-                      whileHover={{ scale: 1.03 }}
-                      onClick={() =>
-                        setSelectedCert(isSelected ? null : i)
-                      }
-                      className={`relative flex items-center gap-2 px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${
+                      type="button"
+                      aria-expanded={isSelected}
+                      aria-controls="certification-detail"
+                      aria-label={`${cert.label} — ${cert.name}`}
+                      onClick={() => setSelectedCert(isSelected ? null : index)}
+                      className={`min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                         isSelected
-                          ? "bg-terracotta text-white border-terracotta"
-                          : "bg-cream text-dark-text border-terracotta-light/50 hover:border-terracotta/40"
+                          ? "border-terracotta bg-terracotta text-white"
+                          : "border-terracotta-light bg-white text-dark-text hover:border-terracotta"
                       }`}
                     >
-                      <Icon
-                        size={16}
-                        className={`shrink-0 ${
-                          isSelected ? "text-white" : "text-terracotta"
-                        }`}
-                      />
-                      <span className="text-sm font-medium">
-                        {cert.label}
-                      </span>
-                    </motion.button>
+                      {cert.label}
+                    </button>
                   );
                 })}
               </div>
 
-              {/* Description panel */}
-              <AnimatePresence mode="wait">
+              <AnimatePresence initial={false}>
                 {selectedCert !== null && (
                   <motion.div
+                    id="certification-detail"
                     key={selectedCert}
-                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                    animate={{ opacity: 1, height: "auto", marginTop: 12 }}
-                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                    initial={reduceMotion ? false : { opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="bg-cream rounded-2xl p-5 border border-terracotta-light/40">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="font-semibold text-dark-text mb-1">
-                            {certifications[selectedCert].label} –{" "}
-                            {certifications[selectedCert].shortDesc}
-                          </p>
-                          <p className="text-sm text-medium-text leading-relaxed">
-                            {certifications[selectedCert].longDesc}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => setSelectedCert(null)}
-                          className="shrink-0 p-1 text-medium-text hover:text-dark-text transition-colors"
-                        >
-                          <X size={16} />
-                        </button>
+                    <div className="mt-4 flex items-start justify-between gap-5 rounded-2xl bg-cream p-5">
+                      <div>
+                        <p className="font-semibold text-dark-text">
+                          {certifications[selectedCert].name}
+                        </p>
+                        <p className="mt-1 max-w-2xl text-sm leading-6 text-medium-text">
+                          {certifications[selectedCert].detail}
+                        </p>
                       </div>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCert(null)}
+                        aria-label="Fermer le détail de la formation"
+                        className="flex size-11 shrink-0 items-center justify-center rounded-full text-medium-text transition-colors hover:bg-white hover:text-dark-text"
+                      >
+                        <X aria-hidden="true" size={18} />
+                      </button>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.a
-              href="#tarifs"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .querySelector("#tarifs")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.2 }}
-              whileHover={{ scale: 1.03 }}
-              className="inline-flex items-center px-8 py-4 bg-terracotta text-white text-lg font-medium rounded-full hover:bg-terracotta/90 transition-colors duration-200 shadow-lg shadow-terracotta/20"
-            >
-              Prendre rendez-vous
-            </motion.a>
-          </div>
-
-          {/* Photo side */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            className="order-1 lg:order-2 relative"
-          >
-            <div className="relative aspect-[3/4] max-w-md mx-auto lg:max-w-none rounded-3xl overflow-hidden bg-cream">
-              {/* Placeholder for photo */}
-              <Image
-                src="/images/estelle-hero.jpg"
-                alt="Estelle Declercq, Kinésiologue et Maderothérapeute"
-                fill
-                priority
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAFRABAAAAAAAAAAAAAAAAAAAAf/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQA//9k="
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Decorative element */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-terracotta/10 rounded-full blur-2xl" />
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-terracotta-light/30 rounded-full blur-2xl" />
             </div>
-
-            {/* Name badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -bottom-4 left-4 right-4 sm:left-8 sm:right-8 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-terracotta-light/20 text-center"
-            >
-              <p className="font-semibold text-dark-text text-lg">
-                Estelle Declercq
-              </p>
-              <p className="text-medium-text text-sm">Kinésiologue</p>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

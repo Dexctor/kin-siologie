@@ -1,112 +1,96 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Star, Quote, ExternalLink } from "lucide-react";
-import { BlobTwo } from "@/components/ui/DecorativeShapes";
+import { Quote, Star } from "lucide-react";
 
 const temoignages = [
   {
     name: "Aude C.",
     text: "J'ai eu plusieurs fois l'occasion de recevoir des séances de la part d'Estelle. Je ne peux que recommander son professionnalisme, son écoute et sa gentillesse !",
     date: "Octobre 2025",
-    rating: 5,
   },
   {
     name: "Alain V.",
     text: "Satisfait de la prestation, de bons effets suite à la séance, je recommande à 100%.",
     date: "Décembre 2025",
-    rating: 5,
   },
   {
     name: "Nathalie",
     text: "Personne très professionnelle, à l'écoute. Je recommande.",
     date: "Juillet 2025",
-    rating: 5,
   },
 ];
 
 export default function Temoignages() {
+  const [temoignagePrincipal, ...autresTemoignages] = temoignages;
+
   return (
-    <section className="py-20 bg-cream relative overflow-hidden">
-      {/* Decorative shapes */}
-      <BlobTwo className="absolute -top-24 -right-28 w-72 h-72 text-terracotta/[0.06]" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header with Google rating */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            Ce que disent mes clients
-          </h2>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={24}
-                  className="text-yellow-500 fill-yellow-500"
-                />
-              ))}
-            </div>
-            <span className="text-lg font-semibold text-dark-text">
-              5/5 sur Google
-            </span>
-          </div>
-          <a
-            href="#"
-            className="inline-flex items-center gap-1 text-terracotta hover:underline text-sm"
-          >
-            Voir tous les avis sur Google
-            <ExternalLink size={14} />
-          </a>
-        </motion.div>
-
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {temoignages.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className="bg-white rounded-2xl p-8 border border-terracotta-light/30 relative"
+    <section
+      aria-labelledby="temoignages-title"
+      className="bg-cream py-20 sm:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="grid gap-8 border-b border-terracotta-light/60 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.65fr)] lg:items-end">
+          <div className="max-w-2xl">
+            <h2
+              id="temoignages-title"
+              className="font-editorial text-4xl font-semibold leading-tight text-dark-text sm:text-5xl"
             >
-              {/* Quote icon */}
-              <Quote
-                size={40}
-                className="text-terracotta/15 absolute top-6 right-6"
-              />
+              Ce que disent mes clients
+            </h2>
+          </div>
 
-              {/* Stars */}
-              <div className="flex gap-0.5 mb-4">
-                {[...Array(t.rating)].map((_, j) => (
-                  <Star
-                    key={j}
-                    size={16}
-                    className="text-yellow-500 fill-yellow-500"
-                  />
+          <div>
+            <div
+              aria-label="Note de 5 sur 5 sur Google"
+              className="flex flex-wrap items-center gap-3"
+            >
+              <span aria-hidden="true" className="flex gap-1 text-yellow-600">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} className="size-4 fill-current" />
                 ))}
-              </div>
+              </span>
+              <span className="font-semibold text-dark-text">
+                5/5 sur Google
+              </span>
+            </div>
+          </div>
+        </header>
 
-              {/* Text */}
-              <p className="text-medium-text leading-relaxed mb-6 italic">
-                &laquo; {t.text} &raquo;
-              </p>
+        <div className="grid gap-10 pt-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:gap-16">
+          <blockquote className="relative lg:pr-10">
+            <Quote
+              aria-hidden="true"
+              className="mb-6 size-10 text-terracotta/30"
+              strokeWidth={1.5}
+            />
+            <p className="max-w-3xl text-2xl leading-relaxed text-dark-text sm:text-3xl sm:leading-relaxed">
+              &laquo;&nbsp;{temoignagePrincipal.text}&nbsp;&raquo;
+            </p>
+            <footer className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-1">
+              <cite className="font-semibold not-italic text-dark-text">
+                {temoignagePrincipal.name}
+              </cite>
+              <span className="text-sm text-medium-text">
+                {temoignagePrincipal.date}
+              </span>
+            </footer>
+          </blockquote>
 
-              {/* Author */}
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-dark-text">{t.name}</span>
-                <span className="text-sm text-medium-text">{t.date}</span>
-              </div>
-            </motion.div>
-          ))}
+          <div className="divide-y divide-terracotta-light/70 border-y border-terracotta-light/70">
+            {autresTemoignages.map((temoignage) => (
+              <blockquote key={temoignage.name} className="py-8 first:pt-0 lg:first:pt-8">
+                <p className="text-lg leading-relaxed text-dark-text">
+                  &laquo;&nbsp;{temoignage.text}&nbsp;&raquo;
+                </p>
+                <footer className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <cite className="font-semibold not-italic text-dark-text">
+                    {temoignage.name}
+                  </cite>
+                  <span className="text-sm text-medium-text">
+                    {temoignage.date}
+                  </span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
         </div>
       </div>
     </section>

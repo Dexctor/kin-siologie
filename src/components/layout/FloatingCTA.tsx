@@ -1,39 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
 export default function FloatingCTA() {
-  const [show, setShow] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [isNearDestination, setIsNearDestination] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
-      setShow(window.scrollY > window.innerHeight * 0.8);
+      setHasScrolled(window.scrollY > window.innerHeight * 0.8);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const destinations = [
+      document.querySelector("#tarifs"),
+      document.querySelector("footer"),
+    ].filter((element): element is Element => Boolean(element));
+    const visibleDestinations = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleDestinations.add(entry.target);
+        } else {
+          visibleDestinations.delete(entry.target);
+        }
+      });
+      setIsNearDestination(visibleDestinations.size > 0);
+    });
+
+    destinations.forEach((destination) => observer.observe(destination));
+    return () => observer.disconnect();
+  }, []);
+
+  const show = hasScrolled && !isNearDestination;
+
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {show && (
         <motion.a
           href="#tarifs"
-          onClick={(e) => {
-            e.preventDefault();
-            document
-              .querySelector("#tarifs")
-              ?.scrollIntoView({ behavior: "smooth" });
+          aria-label="Prendre rendez-vous — voir les tarifs"
+          onClick={(event) => {
+            event.preventDefault();
+            document.querySelector("#tarifs")?.scrollIntoView({
+              behavior: shouldReduceMotion ? "auto" : "smooth",
+              block: "start",
+            });
           }}
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
-          whileHover={{ scale: 1.05 }}
-          className="md:hidden fixed bottom-4 right-4 z-50 flex items-center gap-2 px-5 py-3 bg-terracotta text-white font-medium rounded-full shadow-xl shadow-terracotta/30"
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
+          style={{
+            bottom: "calc(1rem + env(safe-area-inset-bottom))",
+            right: "max(1rem, env(safe-area-inset-right))",
+          }}
+          className="fixed z-30 inline-flex min-h-11 items-center gap-2 rounded-full bg-terracotta px-5 py-3 font-semibold text-white shadow-xl shadow-terracotta/30 transition-colors hover:bg-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 md:hidden"
         >
-          <Calendar size={18} />
+          <Calendar aria-hidden="true" size={18} />
           Rendez-vous
         </motion.a>
       )}

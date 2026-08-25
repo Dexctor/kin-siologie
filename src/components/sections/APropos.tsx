@@ -1,99 +1,82 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowUpRight, Check, HeartHandshake } from "lucide-react";
+
+const approach = [
+  "Une écoute attentive de votre demande",
+  "Des outils adaptés à votre rythme",
+  "Un suivi clair, sans protocole standardisé",
+];
 
 export default function APropos() {
   return (
-    <section id="a-propos" className="py-20 bg-warm-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            À propos
-          </h2>
-          <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            Découvrez mon parcours et ma passion pour le bien-être.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <h3 className="text-2xl font-semibold text-dark-text mb-6">
-              Mon parcours vers la kinésiologie
-            </h3>
-            <div className="space-y-4 text-medium-text leading-relaxed">
-              <p>
-                Passionnée par le bien-être et l&apos;accompagnement de
-                l&apos;humain, j&apos;ai entrepris une reconversion
-                professionnelle qui m&apos;a menée vers la kinésiologie. Cette
-                discipline m&apos;a immédiatement parlé par son approche
-                globale : elle considère la personne dans son ensemble —
-                corps, mental et émotions.
-              </p>
-              <p>
-                Formée à l&apos;EMNAK et certifiée en Touch For Health, Three In
-                One Concept (niveau 9), cranio-sacré, Brain Gym et kinésiologie
-                harmonique, je continue de me former régulièrement pour vous
-                offrir un accompagnement toujours plus complet et adapté.
-              </p>
-              <p>
-                Mon approche est bienveillante, à l&apos;écoute de vos besoins,
-                et respectueuse de votre rythme. Chaque personne est unique, et
-                c&apos;est ensemble que nous trouvons les clés de votre
-                bien-être.
-              </p>
-            </div>
-
-            <motion.a
-              href="#tarifs"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .querySelector("#tarifs")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              whileHover={{ scale: 1.03 }}
-              className="inline-flex items-center mt-8 px-6 py-3 bg-terracotta text-white font-medium rounded-full hover:bg-terracotta/90 transition-colors duration-200"
-            >
-              Prendre rendez-vous
-            </motion.a>
-          </motion.div>
-
-          {/* Photo */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.2,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-cream">
-              <Image
-                src="/images/cabinet.jpg"
-                alt="Cabinet de kinésiologie d'Estelle Declercq"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+    <section id="a-propos" className="bg-white py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20 lg:px-10">
+        <figure className="relative">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream editorial-shadow sm:rounded-[2.5rem]">
+            <Image
+              src="/images/cabinet-kinesiologie.webp"
+              alt="Cabinet de soin lumineux aménagé dans des tons naturels"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 92vw, 44vw"
+            />
+          </div>
+          <figcaption className="absolute -bottom-5 right-4 rounded-2xl border border-terracotta-light/60 bg-warm-white px-5 py-4 card-shadow sm:bottom-6 sm:right-6">
+            <div className="flex items-center gap-3">
+              <HeartHandshake
+                aria-hidden="true"
+                className="text-terracotta"
+                size={22}
               />
+              <div>
+                <p className="text-sm font-semibold text-dark-text">
+                  Une approche globale
+                </p>
+                <p className="text-xs text-muted-text">
+                  Corps, mental et émotions
+                </p>
+              </div>
             </div>
-            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-terracotta/5 rounded-full blur-3xl" />
-          </motion.div>
+          </figcaption>
+        </figure>
+
+        <div>
+          <h2 className="max-w-2xl font-editorial text-4xl font-semibold leading-tight tracking-[-0.025em] text-dark-text sm:text-5xl lg:text-6xl">
+            Un accompagnement attentif, pensé avec vous.
+          </h2>
+
+          <div className="mt-7 max-w-2xl space-y-5 text-base leading-7 text-medium-text sm:text-lg sm:leading-8">
+            <p>
+              Passionnée par l’accompagnement de l’humain, j’ai choisi la
+              kinésiologie pour son regard global sur la personne. Elle permet
+              d’écouter ce qui se joue à la fois dans le corps, le mental et les
+              émotions.
+            </p>
+            <p>
+              Formée à l’EMNAK et à plusieurs approches complémentaires, je
+              continue d’enrichir ma pratique afin que chaque séance reste
+              adaptée à votre situation et à ce que vous traversez aujourd’hui.
+            </p>
+          </div>
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {approach.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm text-dark-text">
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-cream text-terracotta">
+                  <Check aria-hidden="true" size={14} strokeWidth={2.5} />
+                </span>
+                <span className="leading-6">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#tarifs"
+            className="mt-9 inline-flex min-h-12 items-center gap-2 rounded-full border border-terracotta px-6 py-3 font-semibold text-terracotta transition-colors hover:bg-terracotta hover:text-white"
+          >
+            Échanger sur votre besoin
+            <ArrowUpRight aria-hidden="true" size={18} />
+          </a>
         </div>
       </div>
     </section>

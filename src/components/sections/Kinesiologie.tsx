@@ -1,171 +1,148 @@
-"use client";
+import Image from "next/image";
+import { ArrowUpRight, Check, Clock3, HandHeart } from "lucide-react";
 
-import { motion } from "framer-motion";
-import {
-  Zap,
-  Brain,
-  Heart,
-  Shield,
-  Smile,
-  Leaf,
-  CircleCheck,
-} from "lucide-react";
-import { BlobThree } from "@/components/ui/DecorativeShapes";
-
-const bienfaits = [
-  { icon: Zap, label: "Réduction du stress et de l'anxiété" },
-  { icon: Brain, label: "Amélioration de la concentration" },
-  { icon: Heart, label: "Soulagement des douleurs physiques" },
-  { icon: Shield, label: "Renforcement du système immunitaire" },
-  { icon: Smile, label: "Gestion des émotions" },
-  { icon: Leaf, label: "Équilibre énergétique global" },
+const areas = [
+  "Apaiser la sensation de stress",
+  "Soutenir l’attention et la concentration",
+  "Mieux accueillir les émotions",
+  "Relâcher les tensions ressenties",
+  "Retrouver ses propres ressources",
+  "Favoriser un équilibre plus global",
 ];
 
-const etapes = [
+const steps = [
   {
-    step: "01",
+    number: "01",
     title: "Échange & écoute",
-    desc: "Nous prenons le temps de discuter de vos besoins, votre histoire et vos objectifs lors d'un entretien bienveillant.",
+    description:
+      "Nous partons de votre demande, de votre vécu et de ce que vous souhaitez faire évoluer.",
   },
   {
-    step: "02",
+    number: "02",
     title: "Test musculaire",
-    desc: "À l'aide du test musculaire, outil central de la kinésiologie, nous identifions les déséquilibres et les blocages.",
+    description:
+      "Ce retour doux du corps aide à orienter la séance et à repérer les priorités du moment.",
   },
   {
-    step: "03",
+    number: "03",
     title: "Rééquilibrage",
-    desc: "Différentes techniques sont utilisées pour libérer les tensions et rétablir l'équilibre : points réflexes, mouvements, visualisations.",
+    description:
+      "Mouvements, points réflexes ou visualisations sont choisis selon votre réponse et votre confort.",
   },
   {
-    step: "04",
+    number: "04",
     title: "Ancrage & bilan",
-    desc: "Nous vérifions le rééquilibrage et vous donnons des conseils personnalisés pour prolonger les bienfaits de la séance.",
+    description:
+      "Nous faisons le point sur vos ressentis et sur la manière de prolonger le travail au quotidien.",
   },
 ];
 
 export default function Kinesiologie() {
   return (
-    <section id="kinesiologie" className="py-20 bg-cream relative overflow-hidden">
-      {/* Decorative shapes */}
-      <BlobThree className="absolute -top-16 -left-36 w-96 h-96 text-terracotta/[0.06]" />
+    <section id="kinesiologie" className="bg-warm-white py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <figure className="relative overflow-hidden rounded-[2rem] bg-cream editorial-shadow sm:rounded-[2.5rem]">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src="/images/seance-kinesiologie.webp"
+                alt="Test musculaire réalisé pendant une séance de kinésiologie"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 92vw, 51vw"
+              />
+            </div>
+            <figcaption className="flex items-center justify-between gap-4 border-t border-terracotta-light/60 bg-white px-5 py-4 text-sm sm:px-6">
+              <span className="flex items-center gap-2 font-medium text-dark-text">
+                <HandHeart aria-hidden="true" size={18} className="text-terracotta" />
+                Un geste doux, guidé par vos réponses
+              </span>
+              <span className="hidden items-center gap-2 text-muted-text sm:flex">
+                <Clock3 aria-hidden="true" size={16} />
+                1 h à 1 h 30
+              </span>
+            </figcaption>
+          </figure>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            Kinésiologie
-          </h2>
-          <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            La kinésiologie est une approche globale qui utilise le test
-            musculaire pour identifier les déséquilibres et rétablir
-            l&apos;harmonie entre le corps, le mental et les émotions.
-          </p>
-        </motion.div>
-
-        {/* Bienfaits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-semibold text-dark-text mb-8 text-center">
-            Les bienfaits
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bienfaits.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl border border-terracotta-light/30"
-                >
-                  <div className="w-10 h-10 bg-terracotta/10 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon size={20} className="text-terracotta" />
-                  </div>
-                  <span className="text-dark-text font-medium">
-                    {item.label}
-                  </span>
-                </motion.div>
-              );
-            })}
+          <div>
+            <h2 className="font-editorial text-4xl font-semibold leading-tight tracking-[-0.025em] text-dark-text sm:text-5xl lg:text-6xl">
+              La kinésiologie écoute les signaux du corps autrement.
+            </h2>
+            <div className="mt-6 space-y-4 text-base leading-7 text-medium-text sm:text-lg sm:leading-8">
+              <p>
+                La kinésiologie utilise le test musculaire comme un outil de
+                dialogue avec le corps. Il aide à identifier ce qui crée une
+                tension ou un déséquilibre dans la situation qui vous amène.
+              </p>
+              <p>
+                La séance reste habillée, douce et adaptée à vos ressentis.
+                L’objectif est de vous permettre de retrouver vos propres
+                ressources, sans forcer ni brusquer.
+              </p>
+            </div>
+            <a
+              href="#tarifs"
+              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text"
+            >
+              Réserver une séance
+              <ArrowUpRight aria-hidden="true" size={18} />
+            </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Déroulement */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h3 className="text-2xl font-semibold text-dark-text mb-8 text-center">
-            Déroulement d&apos;une séance
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {etapes.map((etape, i) => (
-              <motion.div
-                key={etape.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative bg-white rounded-2xl p-6 border border-terracotta-light/30"
+        <div className="mt-16 grid gap-8 border-y border-terracotta-light/70 py-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:py-12">
+          <div>
+            <h3 className="max-w-md font-editorial text-3xl font-semibold leading-tight text-dark-text sm:text-4xl">
+              Ce que l’on peut explorer ensemble.
+            </h3>
+          </div>
+          <ul className="grid gap-x-8 sm:grid-cols-2">
+            {areas.map((area) => (
+              <li
+                key={area}
+                className="flex items-center gap-3 border-t border-terracotta-light/70 py-4 text-sm font-medium text-dark-text first:border-t-0 sm:[&:nth-child(2)]:border-t-0"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl font-bold text-terracotta/20">
-                    {etape.step}
-                  </span>
-                  <CircleCheck size={20} className="text-terracotta" />
-                </div>
-                <h4 className="font-semibold text-dark-text mb-2">
-                  {etape.title}
-                </h4>
-                <p className="text-sm text-medium-text leading-relaxed">
-                  {etape.desc}
-                </p>
-                {/* Connector line */}
-                {i < etapes.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-terracotta-light" />
-                )}
-              </motion.div>
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-cream text-terracotta">
+                  <Check aria-hidden="true" size={14} strokeWidth={2.5} />
+                </span>
+                {area}
+              </li>
             ))}
-          </div>
-        </motion.div>
+          </ul>
+        </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-14"
-        >
-          <a
-            href="#tarifs"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#tarifs")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center px-8 py-4 bg-terracotta text-white text-lg font-medium rounded-full hover:bg-terracotta/90 transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-terracotta/20"
-          >
-            Réserver une séance de kinésiologie
-          </a>
-        </motion.div>
+        <div className="mt-16 overflow-hidden rounded-[2rem] bg-dark-text px-6 py-9 text-white sm:px-9 sm:py-11 lg:px-12 lg:py-14">
+          <div className="flex flex-col gap-5 border-b border-white/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h3 className="font-editorial text-3xl font-semibold sm:text-4xl">
+                Une séance en quatre temps
+              </h3>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-white/65">
+              Chaque étape s’adapte à vous : le cadre est clair, le contenu ne
+              suit jamais un protocole automatique.
+            </p>
+          </div>
+
+          <ol className="mt-3 grid md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step) => (
+              <li
+                key={step.number}
+                className="border-b border-white/15 py-7 md:px-6 md:[&:nth-child(odd)]:pl-0 lg:border-b-0 lg:border-r lg:px-7 lg:last:border-r-0 lg:last:pr-0 lg:first:pl-0"
+              >
+                <span className="font-editorial text-3xl text-terracotta-light/65">
+                  {step.number}
+                </span>
+                <h4 className="mt-4 text-base font-semibold text-white">
+                  {step.title}
+                </h4>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  {step.description}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );
