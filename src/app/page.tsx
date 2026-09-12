@@ -3,8 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import PourQui from "@/components/sections/PourQui";
 import APropos from "@/components/sections/APropos";
-import Kinesiologie from "@/components/sections/Kinesiologie";
-import Maderotherapie from "@/components/sections/Maderotherapie";
+import Accompagnements from "@/components/sections/Accompagnements";
 import Temoignages from "@/components/sections/Temoignages";
 import FAQ from "@/components/sections/FAQ";
 import Tarifs from "@/components/sections/Tarifs";
@@ -42,8 +41,7 @@ export default function Home() {
         <Hero />
         <APropos />
         <PourQui />
-        <Kinesiologie />
-        <Maderotherapie />
+        <Accompagnements />
         <Temoignages />
         <FAQ />
         <Localisation />
