@@ -2,9 +2,9 @@ import Image from "next/image";
 import { ArrowUpRight, Check, HeartHandshake } from "lucide-react";
 
 const approach = [
-  "Une écoute attentive de votre demande",
-  "Des outils adaptés à votre rythme",
-  "Un suivi clair, sans protocole standardisé",
+  "Une écoute du lien entre stress et douleurs",
+  "Kinésiologie et maderothérapie associées selon vos besoins",
+  "Un accompagnement adapté à votre rythme",
 ];
 
 export default function APropos() {
@@ -15,7 +15,7 @@ export default function APropos() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream editorial-shadow sm:rounded-[2.5rem]">
             <Image
               src="/images/cabinet-kinesiologie.webp"
-              alt="Cabinet de soin lumineux aménagé dans des tons naturels"
+              alt="Illustration d’un cabinet de soin lumineux aux tons naturels"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 92vw, 44vw"
@@ -47,15 +47,15 @@ export default function APropos() {
 
           <div className="mt-7 max-w-2xl space-y-5 text-base leading-7 text-medium-text sm:text-lg sm:leading-8">
             <p>
-              Passionnée par l’accompagnement de l’humain, j’ai choisi la
-              kinésiologie pour son regard global sur la personne. Elle permet
-              d’écouter ce qui se joue à la fois dans le corps, le mental et les
-              émotions.
+              J’accompagne particulièrement le rapport au corps, notamment
+              lorsque le stress, les émotions et les douleurs physiques
+              s’entremêlent. La kinésiologie permet d’écouter ce qui se joue
+              dans le corps, le mental et les émotions.
             </p>
             <p>
-              Formée à l’EMNAK et à plusieurs approches complémentaires, je
-              continue d’enrichir ma pratique afin que chaque séance reste
-              adaptée à votre situation et à ce que vous traversez aujourd’hui.
+              Selon votre besoin, j’associe cette écoute à l’approche corporelle
+              de la maderothérapie pour favoriser une reconnexion progressive à
+              vos sensations, toujours à votre rythme.
             </p>
           </div>
 

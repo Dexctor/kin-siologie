@@ -7,7 +7,7 @@ const tarifs = [
     subtitle: "Adulte",
     price: "60",
     duration: "1 h à 1 h 30",
-    description: "Séance complète de rééquilibrage énergétique",
+    description: "Séance centrée sur le stress, les émotions et les ressentis corporels",
     desktopOrder: "md:order-2",
     emphasis: true,
   },

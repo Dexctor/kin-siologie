@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Check, Clock3, HandHeart } from "lucide-react";
+import CalBookingButton from "@/components/booking/CalBookingButton";
 
 const areas = [
   "Apaiser la sensation de stress",
@@ -46,7 +48,7 @@ export default function Kinesiologie() {
             <div className="relative aspect-[16/10]">
               <Image
                 src="/images/seance-kinesiologie.webp"
-                alt="Test musculaire réalisé pendant une séance de kinésiologie"
+                alt="Illustration d’un test musculaire pendant une séance de kinésiologie"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 92vw, 51vw"
@@ -71,8 +73,9 @@ export default function Kinesiologie() {
             <div className="mt-6 space-y-4 text-base leading-7 text-medium-text sm:text-lg sm:leading-8">
               <p>
                 La kinésiologie utilise le test musculaire comme un outil de
-                dialogue avec le corps. Il aide à identifier ce qui crée une
-                tension ou un déséquilibre dans la situation qui vous amène.
+                dialogue avec le corps. Il aide à explorer la façon dont le
+                stress, les émotions et votre vécu peuvent se traduire dans vos
+                ressentis corporels.
               </p>
               <p>
                 La séance reste habillée, douce et adaptée à vos ressentis.
@@ -80,13 +83,21 @@ export default function Kinesiologie() {
                 ressources, sans forcer ni brusquer.
               </p>
             </div>
-            <a
-              href="#tarifs"
-              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text"
-            >
-              Réserver une séance
-              <ArrowUpRight aria-hidden="true" size={18} />
-            </a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <CalBookingButton
+                booking="kinesiologie"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+              >
+                Réserver une séance
+                <ArrowUpRight aria-hidden="true" size={18} />
+              </CalBookingButton>
+              <Link
+                href="/kinesiologie-dunkerque"
+                className="inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 font-semibold text-dark-text transition-colors hover:bg-cream hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+              >
+                Découvrir la kinésiologie à Dunkerque
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -128,7 +139,7 @@ export default function Kinesiologie() {
             {steps.map((step) => (
               <li
                 key={step.number}
-                className="border-b border-white/15 py-7 md:px-6 md:[&:nth-child(odd)]:pl-0 lg:border-b-0 lg:border-r lg:px-7 lg:last:border-r-0 lg:last:pr-0 lg:first:pl-0"
+                className="border-b border-white/15 py-7 md:px-6 md:max-lg:[&:nth-child(odd)]:pl-0 lg:border-b-0 lg:border-r lg:px-7 lg:last:border-r-0 lg:last:pr-0 lg:first:pl-0"
               >
                 <span className="font-editorial text-3xl text-terracotta-light/65">
                   {step.number}

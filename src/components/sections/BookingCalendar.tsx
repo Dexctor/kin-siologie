@@ -1,4 +1,6 @@
-import { CalendarDays, Mail, Phone } from "lucide-react";
+import { CalendarCheck, CalendarDays, Mail, Phone } from "lucide-react";
+import CalBookingButton from "@/components/booking/CalBookingButton";
+import { siteConfig } from "@/lib/site";
 
 export default function BookingCalendar() {
   return (
@@ -14,14 +16,21 @@ export default function BookingCalendar() {
             Choisissons ensemble votre créneau
           </h3>
           <p className="mt-4 max-w-xl text-pretty leading-relaxed text-warm-white/75">
-            Contactez-moi directement par téléphone ou par e-mail pour organiser
-            votre séance.
+            Réservez directement en ligne, ou contactez-moi par téléphone ou
+            par e-mail si vous souhaitez échanger avant votre séance.
           </p>
+          <CalBookingButton
+            booking="general"
+            className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-terracotta-warm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-light focus-visible:ring-offset-2 focus-visible:ring-offset-dark-text"
+          >
+            <CalendarCheck aria-hidden="true" className="size-5" />
+            Prendre rendez-vous
+          </CalBookingButton>
         </div>
 
         <div className="grid min-w-0 overflow-hidden rounded-2xl bg-warm-white text-dark-text divide-y divide-terracotta-light/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
           <a
-            href="tel:+33600000000"
+            href={siteConfig.phone.href}
             className="group flex min-h-36 min-w-0 items-start gap-4 p-6 outline-none transition-colors hover:bg-cream focus-visible:bg-cream focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-terracotta"
           >
             <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
@@ -32,14 +41,13 @@ export default function BookingCalendar() {
                 Par téléphone
               </span>
               <span className="mt-2 block font-semibold leading-snug text-dark-text group-hover:text-terracotta">
-                Appeler au 06 00 00 00 00
+                Appeler au {siteConfig.phone.display}
               </span>
             </span>
           </a>
 
           <a
-            href="mailto:declercqestelle.kinesio@gmail.com"
-            aria-label="Écrire à Estelle par e-mail à declercqestelle.kinesio@gmail.com"
+            href={`mailto:${siteConfig.email}`}
             className="group flex min-h-36 min-w-0 items-start gap-4 p-6 outline-none transition-colors hover:bg-cream focus-visible:bg-cream focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-terracotta"
           >
             <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">

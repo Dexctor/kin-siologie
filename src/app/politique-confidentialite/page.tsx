@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité – Estelle Declercq",
+  title: "Politique de confidentialité",
   description: "Politique de confidentialité du site d'Estelle Declercq.",
+  alternates: { canonical: "/politique-confidentialite" },
+  robots: { index: false, follow: true },
 };
 
 export default function PolitiqueConfidentialite() {
@@ -29,10 +32,10 @@ export default function PolitiqueConfidentialite() {
               Collecte des données personnelles
             </h2>
             <p>
-              Les données personnelles collectées sur ce site (nom, prénom,
-              email, téléphone) le sont uniquement dans le cadre de la prise de
-              rendez-vous et du suivi de votre accompagnement. Elles ne sont
-              jamais transmises à des tiers.
+              Les informations que vous transmettez volontairement par
+              téléphone ou par e-mail sont utilisées uniquement pour répondre
+              à votre demande, organiser un rendez-vous et assurer le suivi de
+              votre accompagnement. Elles ne sont jamais vendues.
             </p>
           </section>
 
@@ -67,8 +70,7 @@ export default function PolitiqueConfidentialite() {
               Conformément au Règlement Général sur la Protection des Données
               (RGPD), vous disposez d&apos;un droit d&apos;accès, de
               rectification, de suppression et de portabilité de vos données.
-              Pour exercer ces droits, contactez-nous à :
-              declercqestelle.kinesio@gmail.com
+              Pour exercer ces droits, contactez-nous à : {siteConfig.email}
             </p>
           </section>
 

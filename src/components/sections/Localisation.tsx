@@ -1,130 +1,84 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { MapPin, Navigation, Clock } from "lucide-react";
+import { CalendarCheck, MapPin, Navigation, Phone } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 export default function Localisation() {
   return (
-    <section className="py-20 bg-warm-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl font-semibold text-dark-text mb-4">
-            Me trouver
-          </h2>
-          <p className="text-medium-text text-lg max-w-2xl mx-auto">
-            Le cabinet vous accueille dans un cadre calme et bienveillant.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="rounded-2xl overflow-hidden border border-terracotta-light/30 bg-cream h-80 lg:h-auto"
-          >
-            {/* Replace with actual Google Maps embed */}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.0!2d2.35!3d48.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUx!5e0!3m2!1sfr!2sfr!4v1"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: 320 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localisation du cabinet"
-            />
-          </motion.div>
-
-          {/* Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.2,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            className="space-y-6"
-          >
-            {/* Address */}
-            <div className="bg-cream rounded-2xl p-6 border border-terracotta-light/30">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center shrink-0">
-                  <MapPin size={22} className="text-terracotta" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-dark-text mb-1">
-                    Adresse du cabinet
-                  </h3>
-                  <p className="text-medium-text">
-                    123 Rue du Bien-être
-                    <br />
-                    75000 Votre Ville
-                  </p>
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 mt-3 text-terracotta text-sm font-medium hover:underline"
-                  >
-                    <Navigation size={14} />
-                    Itinéraire Google Maps
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Hours */}
-            <div className="bg-cream rounded-2xl p-6 border border-terracotta-light/30">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-terracotta/10 rounded-xl flex items-center justify-center shrink-0">
-                  <Clock size={22} className="text-terracotta" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-dark-text mb-3">
-                    Horaires d&apos;ouverture
-                  </h3>
-                  <div className="space-y-1.5 text-sm text-medium-text">
-                    <div className="flex justify-between gap-8">
-                      <span>Lundi – Vendredi</span>
-                      <span className="font-medium text-dark-text">
-                        9h00 – 19h00
-                      </span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span>Samedi</span>
-                      <span className="font-medium text-dark-text">
-                        9h00 – 13h00
-                      </span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span>Dimanche</span>
-                      <span className="text-medium-text/60">Fermé</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Local SEO text */}
-            <div className="bg-cream rounded-2xl p-6 border border-terracotta-light/30">
-              <p className="text-sm text-medium-text leading-relaxed">
-                Cabinet de kinésiologie et maderothérapie accessible depuis les
-                villes et quartiers environnants. Facilement accessible en
-                transports en commun et parking à proximité.
+    <section
+      id="cabinet"
+      aria-labelledby="cabinet-title"
+      className="overflow-hidden bg-cream py-20 sm:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-stretch gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          <header className="flex flex-col justify-between rounded-[2rem] bg-dark-text p-7 text-white sm:p-10">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-terracotta-light">
+                Le cabinet
+              </p>
+              <h2
+                id="cabinet-title"
+                className="mt-5 max-w-xl font-editorial text-4xl font-semibold leading-tight sm:text-5xl"
+              >
+                Votre cabinet à Dunkerque.
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+                Je vous accueille sur rendez-vous pour des séances individuelles
+                de kinésiologie et de maderothérapie, dans un cadre calme et
+                attentif à votre rythme.
               </p>
             </div>
-          </motion.div>
+
+            <div className="mt-10 flex items-center gap-3 border-t border-white/15 pt-6 text-sm text-white/70">
+              <CalendarCheck
+                aria-hidden="true"
+                className="shrink-0 text-terracotta-light"
+                size={20}
+              />
+              Accueil uniquement sur rendez-vous
+            </div>
+          </header>
+
+          <div className="relative overflow-hidden rounded-[2rem] border border-terracotta-light/70 bg-warm-white p-7 sm:p-10">
+            <div
+              aria-hidden="true"
+              className="absolute -right-20 -top-20 size-64 rounded-full border-[3rem] border-cream"
+            />
+            <div className="relative">
+              <span className="flex size-12 items-center justify-center rounded-full bg-terracotta/10 text-terracotta">
+                <MapPin aria-hidden="true" size={22} />
+              </span>
+
+              <p className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-muted-text">
+                Adresse
+              </p>
+              <p className="mt-3 max-w-lg font-editorial text-3xl font-semibold leading-tight text-dark-text sm:text-4xl">
+                {siteConfig.address.streetAddress}
+                <span className="mt-1 block text-terracotta">
+                  {siteConfig.address.postalCode} {siteConfig.address.city}
+                </span>
+              </p>
+
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={siteConfig.mapsUrl}
+                  target="_blank"
+                  rel="external noopener noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-6 font-semibold text-white transition-colors hover:bg-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+                >
+                  <Navigation aria-hidden="true" size={18} />
+                  Préparer l’itinéraire
+                </a>
+                <a
+                  href={siteConfig.phone.href}
+                  aria-label={`Appeler Estelle au ${siteConfig.phone.display}`}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-terracotta-light bg-white px-6 font-semibold text-dark-text transition-colors hover:border-terracotta hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+                >
+                  <Phone aria-hidden="true" size={18} />
+                  {siteConfig.phone.display}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

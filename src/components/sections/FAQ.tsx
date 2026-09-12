@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { siteConfig } from "@/lib/site";
 
 const faqs = [
   {
@@ -32,12 +33,28 @@ const faqs = [
       "La kinésiologie n'est pas remboursée par la Sécurité sociale. Cependant, de nombreuses mutuelles proposent un forfait annuel pour les médecines douces et complémentaires. Je vous invite à vérifier auprès de votre mutuelle les conditions de remboursement. Une facture peut vous être délivrée sur demande.",
   },
   {
-    question:
-      "Quelle est la différence entre kinésiologie et maderothérapie ?",
+    question: "Comment la kinésiologie et la maderothérapie se complètent-elles ?",
     answer:
-      "La kinésiologie s'appuie sur le test musculaire et s'intéresse à la façon dont le corps, les émotions et le mental interagissent. La maderothérapie est un modelage corporel réalisé avec des instruments en bois. La première part d'une demande globale ; la seconde travaille directement sur les tissus et les sensations corporelles.",
+      "La kinésiologie s'appuie sur le test musculaire pour explorer les liens entre le corps, les émotions et le mental. La maderothérapie travaille plus directement sur les tissus et les sensations corporelles. Selon votre besoin, les deux approches peuvent être associées dans un même accompagnement.",
+  },
+  {
+    question: "Où se situe le cabinet ?",
+    answer: `Le cabinet se trouve au ${siteConfig.address.streetAddress}, ${siteConfig.address.postalCode} ${siteConfig.address.city}. Les séances ont lieu uniquement sur rendez-vous.`,
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function FAQ() {
   return (
@@ -45,6 +62,10 @@ export default function FAQ() {
       aria-labelledby="faq-title"
       className="bg-warm-white py-20 sm:py-24"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)] lg:gap-20">
           <header className="self-start lg:sticky lg:top-28">

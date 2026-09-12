@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Mentions légales – Estelle Declercq",
+  title: "Mentions légales",
   description: "Mentions légales du site d'Estelle Declercq, kinésiologue et maderothérapeute.",
+  alternates: { canonical: "/mentions-legales" },
+  robots: { index: false, follow: true },
 };
 
 export default function MentionsLegales() {
@@ -29,17 +32,20 @@ export default function MentionsLegales() {
               Éditeur du site
             </h2>
             <p>
-              Estelle Declercq – Kinésiologue & Maderothérapeute
+              {siteConfig.businessName}
               <br />
               Entreprise individuelle
               <br />
               SIRET : 988 636 643 00013
               <br />
-              Adresse : 123 Rue du Bien-être, 75000 Votre Ville
+              Adresse professionnelle : {siteConfig.address.streetAddress},{" "}
+              {siteConfig.address.postalCode} {siteConfig.address.city}
               <br />
-              Téléphone : 06 00 00 00 00
+              Téléphone : {siteConfig.phone.display}
               <br />
-              Email : declercqestelle.kinesio@gmail.com
+              Email : {siteConfig.email}
+              <br />
+              Directrice de la publication : {siteConfig.name}
             </p>
           </section>
 

@@ -6,6 +6,7 @@ import {
   Moon,
   UsersRound,
 } from "lucide-react";
+import Link from "next/link";
 
 const needs = [
   {
@@ -34,9 +35,9 @@ const needs = [
   },
   {
     icon: Activity,
-    title: "Tensions & récupération",
+    title: "Douleurs & tensions",
     description:
-      "Pour mieux écouter les signaux du corps et soutenir les temps de récupération.",
+      "Pour mettre en lien vos douleurs physiques, votre rythme, votre stress et ce que vous traversez.",
   },
   {
     icon: UsersRound,
@@ -53,13 +54,13 @@ export default function PourQui() {
         <div className="grid gap-6 border-b border-terracotta-light/80 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <h2 className="max-w-2xl font-editorial text-4xl font-semibold leading-tight tracking-[-0.025em] text-dark-text sm:text-5xl lg:text-6xl">
-              Pour ce qui vous pèse aujourd’hui.
+              Quand le stress se fait sentir dans le corps.
             </h2>
           </div>
           <p className="max-w-2xl text-base leading-7 text-medium-text sm:text-lg sm:leading-8 lg:justify-self-end">
-            Il n’est pas toujours simple de mettre des mots sur ce que l’on
-            traverse. La séance part de votre vécu, sans vous enfermer dans une
-            case ni imposer un objectif tout fait.
+            Douleurs, tensions, fatigue ou émotions envahissantes : la séance
+            part de ce que vous ressentez, sans vous enfermer dans une case ni
+            imposer un objectif tout fait.
           </p>
         </div>
 
@@ -75,7 +76,7 @@ export default function PourQui() {
                   <span className="flex size-11 items-center justify-center rounded-full bg-white text-terracotta shadow-sm">
                     <Icon aria-hidden="true" size={21} />
                   </span>
-                  <span className="font-editorial text-2xl text-terracotta-warm/55">
+                  <span className="font-editorial text-2xl text-terracotta">
                     0{index + 1}
                   </span>
                 </div>
@@ -92,15 +93,23 @@ export default function PourQui() {
 
         <div className="mt-10 flex flex-col gap-4 rounded-2xl bg-dark-text px-6 py-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p className="max-w-2xl text-sm leading-6 text-white/75 sm:text-base">
-            Vous hésitez entre kinésiologie et maderothérapie ? Un premier
-            échange permet de choisir l’accompagnement le plus adapté.
+            Selon votre besoin, la kinésiologie et la maderothérapie peuvent
+            être associées pour relier écoute globale et sensations corporelles.
           </p>
-          <a
-            href="#tarifs"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-dark-text transition-colors hover:bg-cream"
-          >
-            Voir les séances
-          </a>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <Link
+              href="/stress-douleurs-corps"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Comprendre le lien stress-corps
+            </Link>
+            <a
+              href="#tarifs"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-dark-text transition-colors hover:bg-cream"
+            >
+              Voir les séances
+            </a>
+          </div>
         </div>
       </div>
     </section>

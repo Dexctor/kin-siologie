@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import BookingDialogProvider from "@/components/booking/BookingDialogProvider";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -16,32 +18,23 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Estelle Declercq – Kinésiologue & Maderothérapeute",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "Kinésiologue à Dunkerque | Estelle Declercq",
+    template: "%s | Estelle Declercq",
+  },
   description:
-    "Estelle Declercq, kinésiologue et maderothérapeute certifiée. Séances de kinésiologie, maderothérapie, gestion du stress, bien-être. Prenez rendez-vous en ligne.",
-  keywords: [
-    "kinésiologue",
-    "kinésiologie",
-    "maderothérapie",
-    "maderothérapeute",
-    "bien-être",
-    "stress",
-    "Estelle Declercq",
-    "Touch For Health",
-    "Brain Gym",
-  ],
+    "Kinésiologie et maderothérapie à Dunkerque avec Estelle Declercq : un accompagnement autour du stress, des douleurs physiques et du rapport au corps.",
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
   openGraph: {
-    title: "Estelle Declercq – Kinésiologue & Maderothérapeute",
-    description:
-      "Reconnectez-vous à votre corps. Séances de kinésiologie et maderothérapie avec Estelle Declercq.",
+    siteName: siteConfig.name,
     type: "website",
     locale: "fr_FR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Estelle Declercq – Kinésiologue & Maderothérapeute",
-    description:
-      "Reconnectez-vous à votre corps. Séances de kinésiologie et maderothérapie.",
   },
   robots: {
     index: true,
@@ -51,19 +44,80 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
-  name: "Estelle Declercq – Kinésiologue & Maderothérapeute",
-  description:
-    "Séances de kinésiologie et maderothérapie pour le bien-être, la gestion du stress et l'équilibre corporel.",
-  url: "https://www.estelledeclercq.fr",
-  telephone: "+33600000000",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Votre Ville",
-    addressCountry: "FR",
-  },
-  openingHours: ["Mo-Fr 09:00-19:00", "Sa 09:00-13:00"],
-  priceRange: "€€",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      inLanguage: "fr-FR",
+      publisher: { "@id": `${siteConfig.url}/#business` },
+    },
+    {
+      "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
+      "@id": `${siteConfig.url}/#business`,
+      name: siteConfig.businessName,
+      description:
+        "Accompagnement par la kinésiologie et la maderothérapie autour du rapport au corps, du stress et des douleurs physiques à Dunkerque.",
+      url: siteConfig.url,
+      image: `${siteConfig.url}/images/hero-consultation.webp`,
+      telephone: siteConfig.phone.international,
+      email: siteConfig.email,
+      priceRange: "€€",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.address.streetAddress,
+        postalCode: siteConfig.address.postalCode,
+        addressLocality: siteConfig.address.city,
+        addressRegion: siteConfig.address.region,
+        addressCountry: siteConfig.address.country,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: siteConfig.address.latitude,
+        longitude: siteConfig.address.longitude,
+      },
+      areaServed: {
+        "@type": "City",
+        name: siteConfig.address.city,
+      },
+      founder: { "@id": `${siteConfig.url}/#estelle-declercq` },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Accompagnements",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Séance de kinésiologie",
+              url: `${siteConfig.url}/kinesiologie-dunkerque`,
+              provider: { "@id": `${siteConfig.url}/#business` },
+              areaServed: siteConfig.address.city,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Séance de maderothérapie",
+              url: `${siteConfig.url}/maderotherapie-dunkerque`,
+              provider: { "@id": `${siteConfig.url}/#business` },
+              areaServed: siteConfig.address.city,
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#estelle-declercq`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      jobTitle: "Kinésiologue et maderothérapeute",
+      worksFor: { "@id": `${siteConfig.url}/#business` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -79,7 +133,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <BookingDialogProvider>{children}</BookingDialogProvider>
+      </body>
     </html>
   );
 }

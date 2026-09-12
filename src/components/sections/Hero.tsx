@@ -11,6 +11,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
+import CalBookingButton from "@/components/booking/CalBookingButton";
 
 const certifications = [
   {
@@ -52,7 +53,7 @@ const certifications = [
 ];
 
 const reassurance = [
-  "Séances individuelles",
+  "Cabinet à Dunkerque",
   "Approche douce et personnalisée",
   "Adultes, adolescents et enfants",
 ];
@@ -73,31 +74,29 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative z-10"
-          >
+          <div className="relative z-10">
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">
+              Reconnectez-vous à votre corps
+            </p>
             <h1 className="max-w-3xl font-editorial text-[3.15rem] font-semibold leading-[0.95] tracking-[-0.035em] text-dark-text sm:text-6xl lg:text-[5.35rem]">
-              Reconnectez-vous
-              <span className="block italic text-terracotta">à votre corps.</span>
+              Kinésiologie &amp; maderothérapie
+              <span className="block italic text-terracotta">à Dunkerque.</span>
             </h1>
 
             <p className="mt-7 max-w-xl text-lg leading-8 text-medium-text sm:text-xl">
-              En kinésiologie ou en maderothérapie, chaque séance vous aide à
-              mieux écouter vos ressentis et à relâcher les tensions, à votre
-              rythme.
+              J’associe kinésiologie et maderothérapie pour explorer avec vous
+              les liens possibles entre stress, douleurs physiques et rapport
+              au corps, sans forcer et à votre rythme.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="#tarifs"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-7 py-3.5 font-semibold text-white shadow-[0_12px_28px_rgba(94,43,25,0.18)] transition-colors hover:bg-dark-text"
+              <CalBookingButton
+                booking="general"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-7 py-3.5 font-semibold text-white shadow-[0_12px_28px_rgba(94,43,25,0.18)] transition-colors hover:bg-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
               >
                 <CalendarCheck aria-hidden="true" size={19} />
                 Prendre rendez-vous
-              </a>
+              </CalBookingButton>
               <a
                 href="#kinesiologie"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3.5 font-semibold text-dark-text transition-colors hover:bg-cream"
@@ -117,7 +116,7 @@ export default function Hero() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           <motion.figure
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -132,7 +131,7 @@ export default function Hero() {
             <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-cream editorial-shadow sm:rounded-[2.5rem]">
               <Image
                 src="/images/hero-consultation.webp"
-                alt="Accompagnement individuel dans un cabinet de kinésiologie lumineux"
+                alt="Illustration d’un accompagnement individuel dans un cabinet lumineux"
                 fill
                 priority
                 className="object-cover"

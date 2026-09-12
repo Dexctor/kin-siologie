@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowUpRight,
   CircleDot,
@@ -8,6 +9,7 @@ import {
   Sparkles,
   Waves,
 } from "lucide-react";
+import CalBookingButton from "@/components/booking/CalBookingButton";
 
 const benefits = [
   { icon: Waves, label: "Sensation de jambes plus légères" },
@@ -61,25 +63,34 @@ export default function Maderotherapie() {
                 stimuler les jambes de façon ciblée.
               </p>
               <p>
-                La pression est ajustée à votre sensibilité. Le soin se déroule
-                dans un cadre professionnel, avec des gestes progressifs et un
-                temps d’échange avant comme après la séance.
+                Elle complète la kinésiologie par un travail direct sur les
+                sensations corporelles. La pression reste ajustée à votre
+                sensibilité pour vous aider à retrouver une présence plus douce
+                à votre corps.
               </p>
             </div>
-            <a
-              href="#tarifs"
-              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text"
-            >
-              Réserver une séance
-              <ArrowUpRight aria-hidden="true" size={18} />
-            </a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <CalBookingButton
+                booking="maderotherapie"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+              >
+                Réserver une séance
+                <ArrowUpRight aria-hidden="true" size={18} />
+              </CalBookingButton>
+              <Link
+                href="/maderotherapie-dunkerque"
+                className="inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 font-semibold text-dark-text transition-colors hover:bg-white hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+              >
+                Découvrir la maderothérapie à Dunkerque
+              </Link>
+            </div>
           </div>
 
           <figure className="relative overflow-hidden rounded-[2rem] bg-white editorial-shadow sm:rounded-[2.5rem]">
             <div className="relative aspect-[16/10]">
               <Image
                 src="/images/seance-maderotherapie.webp"
-                alt="Modelage des jambes avec un rouleau en bois pendant une séance de maderothérapie"
+                alt="Illustration d’un modelage des jambes avec un rouleau en bois"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 92vw, 52vw"
@@ -120,7 +131,7 @@ export default function Maderotherapie() {
                 Une technique précise, une pression toujours ajustée.
               </h3>
             </div>
-            <p className="mt-8 border-t border-white/25 pt-6 text-sm leading-6 text-white/75">
+            <p className="mt-8 border-t border-white/25 pt-6 text-sm leading-6 text-white/90">
               Vous restez actrice de la séance : la pression et les gestes sont
               adaptés à votre confort tout au long du soin.
             </p>
@@ -132,7 +143,7 @@ export default function Maderotherapie() {
                 key={step.number}
                 className="grid gap-2 border-b border-terracotta-light/70 py-6 first:pt-0 last:border-b-0 last:pb-0 sm:grid-cols-[52px_1fr] sm:gap-5"
               >
-                <span className="font-editorial text-2xl text-terracotta-warm/65">
+                <span className="font-editorial text-2xl text-terracotta">
                   {step.number}
                 </span>
                 <div>

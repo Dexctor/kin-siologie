@@ -105,6 +105,35 @@ p {
   box-shadow: var(--shadow-card);
 }
 
+@keyframes creator-sparkle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.creator-sparkle {
+  animation: creator-sparkle-spin 7s linear infinite;
+  transform-origin: center;
+}
+
+.creator-name {
+  background-image: linear-gradient(currentcolor, currentcolor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 220ms ease;
+}
+
+.creator-link:hover .creator-sparkle,
+.creator-link:focus-visible .creator-sparkle {
+  animation-duration: 1.6s;
+}
+
+.creator-link:hover .creator-name,
+.creator-link:focus-visible .creator-name {
+  background-size: 45% 1px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -117,6 +146,10 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .creator-sparkle {
+    animation: none !important;
   }
 }
 
